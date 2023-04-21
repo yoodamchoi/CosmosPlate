@@ -52,53 +52,54 @@ The project's frontend is a web-based user interface that customers can use to b
 ### Smart contracts
 
 #### Restaurant.sol
-Variables:
-•	owner: an address variable that stores the address of the owner of the restaurant
-•	capacity: a uint256 variable that stores the maximum capacity of the restaurant
-•	reservations: a mapping that stores the availability status of each reservation slot. It maps a uint256 timestamp to a bool indicating whether or not the slot is reserved.
-Events:
-•	ReservationMade: an event that is emitted when a reservation is made. It includes the timestamp of the reservation and the address of the user who made the reservation.
-•	ReservationCancelled: an event that is emitted when a reservation is cancelled. It includes the timestamp of the reservation and the address of the user who cancelled the reservation.
-Functions:
-•	constructor: a constructor function that initializes the owner and capacity variables.
-•	makeReservation: a function that allows a user to make a reservation for a particular time slot. It checks if the caller is not the owner and if the reservation slot is available. If these conditions are met, it sets the reservation slot to be taken and emits an ReservationMade event with the time and the caller's address.
-•	cancelReservation: a function that allows a user to cancel their reservation for a particular time slot. It checks if the reservation slot exists and if it is taken. If these conditions are met, it frees up the reservation slot and emits an ReservationCancelled event with the time and the caller's address.
-•	getCapacity: a function that returns the maximum capacity of the restaurant.
-•	getReservations: a function that returns a mapping of reservation slots and their availability status.
-#### User.sol
-Variables:
-•	owner: an address type variable that stores the address of the user who created the contract instance
-•	name: a string type variable that stores the name of the user
-•	email: a string type variable that stores the email of the user
-•	reservationCount: a uint type variable that stores the number of reservations made by the user
-Functions:
-•	constructor: the constructor function takes two arguments, the name and email of the user, and initializes the state variables accordingly
-•	onlyOwner modifier: a modifier that restricts access to functions to only the contract owner, which is checked by comparing the caller's address to the owner's address
-•	updateName: a function that allows the owner to update the name of the user
-•	updateEmail: a function that allows the owner to update the email of the user
-•	incrementReservationCount: a function that allows the owner to increment the reservation count of the user
-•	getReservationCount: a function that returns the reservation count of the user. This function is view-only, meaning it does not modify the state of the contract.
-####Reservation.sol
-Variables:
-•	reservations: a mapping that maps a uint256 key to a Reservation struct value, representing reservations made by users.
-•	reservationCount: a uint256 variable that keeps track of the number of reservations made by users.
-Events:
-•	ReservationMade: an event that is emitted when a reservation is made. It includes the following fields:
-•	reservationId: a uint256 variable that stores the ID of the reservation made.
-•	user: an address variable that stores the address of the user who made the reservation.
-•	restaurantId: a uint256 variable that stores the ID of the restaurant for which the reservation was made.
-•	time: a uint256 variable that stores the timestamp of the reservation.
-•	ReservationConfirmed: an event that is emitted when a reservation is confirmed by the restaurant. It includes the following fields:
-•	reservationId: a uint256 variable that stores the ID of the reservation confirmed.
-•	user: an address variable that stores the address of the user who made the reservation.
-•	restaurantId: a uint256 variable that stores the ID of the restaurant for which the reservation was made.
-•	time: a uint256 variable that stores the timestamp of the reservation.
-Functions:
-•	makeReservation: a function that allows a user to make a reservation for a particular time slot. It takes two arguments:
-•	_restaurantId: a uint256 variable that represents the ID of the restaurant for which the reservation is made.
-•	_time: a uint256 variable that represents the timestamp of the reservation. The function creates a new Reservation struct with the caller's address, _restaurantId, _time, and false (unconfirmed) as the fields. It adds this reservation to the reservations mapping with the current reservationCount as the key, and increments reservationCount by 1. Finally, it emits a ReservationMade event with the reservationCount, caller's address, _restaurantId, and _time, and returns the reservationCount - 1 as the reservation ID.
-•	confirmReservation: a function that allows the restaurant to confirm a reservation made by a user. It takes one argument:
-•	_reservationId: a uint256 variable that represents the ID of the reservation to be confirmed. The function first retrieves the Reservation struct from the reservations mapping with the given _reservationId. It then checks if the caller is the owner of the restaurant for which the reservation was made, using the restaurants mapping that is not defined in the code provided. If the caller is not the owner, it reverts with an error message. If the caller is the owner, it sets the confirmed field of the Reservation struct to true, and emits a ReservationConfirmed event with the _reservationId, caller's address, _restaurantId, and _time. Finally, it returns true.
+
+Variables:  
+•	owner: an address variable that stores the address of the owner of the restaurant  
+•	capacity: a uint256 variable that stores the maximum capacity of the restaurant  
+•	reservations: a mapping that stores the availability status of each reservation slot. It maps a uint256 timestamp to a bool indicating whether or not the slot is reserved.  
+Events:  
+•	ReservationMade: an event that is emitted when a reservation is made. It includes the timestamp of the reservation and the address of the user who made the reservation.  
+•	ReservationCancelled: an event that is emitted when a reservation is cancelled. It includes the timestamp of the reservation and the address of the user who cancelled the reservation.  
+Functions:  
+•	constructor: a constructor function that initializes the owner and capacity variables.  
+•	makeReservation: a function that allows a user to make a reservation for a particular time slot. It checks if the caller is not the owner and if the reservation slot is available. If these conditions are met, it sets the reservation slot to be taken and emits an ReservationMade event with the time and the caller's address.  
+•	cancelReservation: a function that allows a user to cancel their reservation for a particular time slot. It checks if the reservation slot exists and if it is taken. If these conditions are met, it frees up the reservation slot and emits an ReservationCancelled event with the time and the caller's address.  
+•	getCapacity: a function that returns the maximum capacity of the restaurant.  
+•	getReservations: a function that returns a mapping of reservation slots and their availability status.  
+#### User.sol  
+Variables:  
+•	owner: an address type variable that stores the address of the user who created the contract instance  
+•	name: a string type variable that stores the name of the user  
+•	email: a string type variable that stores the email of the user  
+•	reservationCount: a uint type variable that stores the number of reservations made by the user  
+Functions:  
+•	constructor: the constructor function takes two arguments, the name and email of the user, and initializes the state variables accordingly  
+•	onlyOwner modifier: a modifier that restricts access to functions to only the contract owner, which is checked by comparing the caller's address to the owner's address  
+•	updateName: a function that allows the owner to update the name of the user  
+•	updateEmail: a function that allows the owner to update the email of the user  
+•	incrementReservationCount: a function that allows the owner to increment the reservation count of the user  
+•	getReservationCount: a function that returns the reservation count of the user. This function is view-only, meaning it does not modify the state of the contract.  
+#### Reservation.sol  
+Variables:  
+•	reservations: a mapping that maps a uint256 key to a Reservation struct value, representing reservations made by users.  
+•	reservationCount: a uint256 variable that keeps track of the number of reservations made by users.  
+Events:  
+•	ReservationMade: an event that is emitted when a reservation is made. It includes the following fields:  
+•	reservationId: a uint256 variable that stores the ID of the reservation made.  
+•	user: an address variable that stores the address of the user who made the reservation.  
+•	restaurantId: a uint256 variable that stores the ID of the restaurant for which the reservation was made.  
+•	time: a uint256 variable that stores the timestamp of the reservation.  
+•	ReservationConfirmed: an event that is emitted when a reservation is confirmed by the restaurant. It includes the following fields:  
+•	reservationId: a uint256 variable that stores the ID of the reservation confirmed.  
+•	user: an address variable that stores the address of the user who made the reservation.  
+•	restaurantId: a uint256 variable that stores the ID of the restaurant for which the reservation was made.  
+•	time: a uint256 variable that stores the timestamp of the reservation.  
+Functions:  
+•	makeReservation: a function that allows a user to make a reservation for a particular time slot. It takes two arguments:  
+•	_restaurantId: a uint256 variable that represents the ID of the restaurant for which the reservation is made.  
+•	_time: a uint256 variable that represents the timestamp of the reservation. The function creates a new Reservation struct with the caller's address, _restaurantId, _time, and false (unconfirmed) as the fields. It adds this reservation to the reservations mapping with the current reservationCount as the key, and increments reservationCount by 1. Finally, it emits a ReservationMade event with the reservationCount, caller's address, _restaurantId, and _time, and returns the reservationCount - 1 as the reservation ID.  
+•	confirmReservation: a function that allows the restaurant to confirm a reservation made by a user. It takes one argument:  
+•	_reservationId: a uint256 variable that represents the ID of the reservation to be confirmed. The function first retrieves the Reservation struct from the reservations mapping with the given _reservationId. It then checks if the caller is the owner of the restaurant for which the reservation was made, using the restaurants mapping that is not defined in the code provided. If the caller is not the owner, it reverts with an error message. If the caller is the owner, it sets the confirmed field of the Reservation struct to true, and emits a ReservationConfirmed event with the _reservationId, caller's address, _restaurantId, and _time. Finally, it returns true.  
 
 ### Database
 The reservation and confirmation details are stored in a distributed database, such as Cosmos DB, which can scale horizontally across multiple regions and handle high traffic volumes. The database is managed by the cloud provider and can be easily accessed and managed through the backend server.
