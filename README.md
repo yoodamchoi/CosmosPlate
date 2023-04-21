@@ -15,7 +15,7 @@ This sequence diagram shows the interactions between the user, the reservation w
 First, the user logs in to the reservation website/app, which then displays a list of available restaurants and reservation times. The user then selects a restaurant and reservation time.
 Next, the reservation details are stored on the Cosmos blockchain to provide an immutable record of the transaction. The reservation request is then sent to the restaurant, which confirms the reservation. The confirmation is stored on the Cosmos blockchain to record the transaction.
 If the user needs to cancel or modify their reservation, they can do so through the website/app, and the updates will be recorded on the Cosmos blockchain. Finally, on the day of the reservation, the user checks in at the restaurant, and the check-in transaction is recorded on the Cosmos blockchain.
-Overall, the sequence diagram shows how the various components of the system work together to facilitate the reservation process and ensure that all transactions are recorded accurately and securely on the Cosmos blockchain.
+Overall, the sequence diagram shows how the various components of the system work together to facilitate the reservation process and ensure that all transactions are recorded accurately and securely on the Cosmos blockchain.  
 ## Architecture diagram
 <img width="267" alt="image" src="https://user-images.githubusercontent.com/114115158/233745477-56bd8eed-7041-4475-8570-c0af96394793.png">
 This architecture consists of three main components:
@@ -23,7 +23,7 @@ This architecture consists of three main components:
 •	Backend API: The server-side component that handles API calls from the frontend, communicates with the Cosmos DB, and performs any necessary business logic.
 •	Cosmos DB: The distributed database that stores reservation and confirmation details on the Cosmos blockchain.
 When a user interacts with the frontend, such as by selecting a restaurant and reservation time, the frontend sends an API call to the backend API. The backend API then stores the reservation details on the Cosmos blockchain and sends a confirmation to the restaurant. If the user needs to modify or cancel their reservation, the frontend sends another API call to the backend API, which updates the reservation details on the Cosmos blockchain.
-To display the map and top-rated restaurants, the frontend can make API calls to the backend API, which in turn queries the Cosmos DB for reservation and rating data. The backend API can then return this data to the frontend, which can use it to display the map and restaurant listings.
+To display the map and top-rated restaurants, the frontend can make API calls to the backend API, which in turn queries the Cosmos DB for reservation and rating data. The backend API can then return this data to the frontend, which can use it to display the map and restaurant listings.  
 ## Architecture
 ### Data model
 •	Users: Information about users who are using the reservation system.
@@ -53,7 +53,7 @@ Functions:
 •	cancelReservation: a function that allows a user to cancel their reservation for a particular time slot. It checks if the reservation slot exists and if it is taken. If these conditions are met, it frees up the reservation slot and emits an ReservationCancelled event with the time and the caller's address.
 •	getCapacity: a function that returns the maximum capacity of the restaurant.
 •	getReservations: a function that returns a mapping of reservation slots and their availability status.
-####User.sol
+#### User.sol
 Variables:
 •	owner: an address type variable that stores the address of the user who created the contract instance
 •	name: a string type variable that stores the name of the user
