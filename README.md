@@ -53,11 +53,11 @@ The project's frontend is a web-based user interface that customers can use to b
 
 #### Restaurant.sol
 
-Variables:  
+##### Variables:  
 •	owner: an address variable that stores the address of the owner of the restaurant  
 •	capacity: a uint256 variable that stores the maximum capacity of the restaurant  
 •	reservations: a mapping that stores the availability status of each reservation slot. It maps a uint256 timestamp to a bool indicating whether or not the slot is reserved.  
-Events:  
+##### Events:  
 •	ReservationMade: an event that is emitted when a reservation is made. It includes the timestamp of the reservation and the address of the user who made the reservation.  
 •	ReservationCancelled: an event that is emitted when a reservation is cancelled. It includes the timestamp of the reservation and the address of the user who cancelled the reservation.  
 Functions:  
@@ -67,12 +67,12 @@ Functions:
 •	getCapacity: a function that returns the maximum capacity of the restaurant.  
 •	getReservations: a function that returns a mapping of reservation slots and their availability status.  
 #### User.sol  
-Variables:  
+##### Variables:  
 •	owner: an address type variable that stores the address of the user who created the contract instance  
 •	name: a string type variable that stores the name of the user  
 •	email: a string type variable that stores the email of the user  
 •	reservationCount: a uint type variable that stores the number of reservations made by the user  
-Functions:  
+##### Functions:  
 •	constructor: the constructor function takes two arguments, the name and email of the user, and initializes the state variables accordingly  
 •	onlyOwner modifier: a modifier that restricts access to functions to only the contract owner, which is checked by comparing the caller's address to the owner's address  
 •	updateName: a function that allows the owner to update the name of the user  
@@ -80,10 +80,10 @@ Functions:
 •	incrementReservationCount: a function that allows the owner to increment the reservation count of the user  
 •	getReservationCount: a function that returns the reservation count of the user. This function is view-only, meaning it does not modify the state of the contract.  
 #### Reservation.sol  
-Variables:  
+##### Variables:  
 •	reservations: a mapping that maps a uint256 key to a Reservation struct value, representing reservations made by users.  
 •	reservationCount: a uint256 variable that keeps track of the number of reservations made by users.  
-Events:  
+##### Events:  
 •	ReservationMade: an event that is emitted when a reservation is made. It includes the following fields:  
 •	reservationId: a uint256 variable that stores the ID of the reservation made.  
 •	user: an address variable that stores the address of the user who made the reservation.  
