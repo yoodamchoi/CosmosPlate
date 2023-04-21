@@ -94,7 +94,7 @@ Events:
 •	user: an address variable that stores the address of the user who made the reservation.  
 •	restaurantId: a uint256 variable that stores the ID of the restaurant for which the reservation was made.  
 •	time: a uint256 variable that stores the timestamp of the reservation.  
-Functions:  
+##### Functions:  
 •	makeReservation: a function that allows a user to make a reservation for a particular time slot. It takes two arguments:  
 •	_restaurantId: a uint256 variable that represents the ID of the restaurant for which the reservation is made.  
 •	_time: a uint256 variable that represents the timestamp of the reservation. The function creates a new Reservation struct with the caller's address, _restaurantId, _time, and false (unconfirmed) as the fields. It adds this reservation to the reservations mapping with the current reservationCount as the key, and increments reservationCount by 1. Finally, it emits a ReservationMade event with the reservationCount, caller's address, _restaurantId, and _time, and returns the reservationCount - 1 as the reservation ID.  
